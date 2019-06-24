@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorBoundary from './commons/ErrorBoudary';
+import ErrorBoundary from './ErrorBoundary';
 
 function App() {
   return (
