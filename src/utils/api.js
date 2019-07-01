@@ -5,6 +5,7 @@ const handleResponse = response => response.text().then((text) => {
   if (!response.ok) {
     return Promise.reject(data);
   }
+
   return data;
 });
 
@@ -21,18 +22,19 @@ export function authHeader(authenticated) {
   if (user && user.token) {
     return { Authorization: `Bearer ${user.token}` };
   }
+
   return {};
 }
 
 const api = ({
-  endpoint, method, data, authenticated,
+  endpoint, method, data, authenticated
 }) => fetch(`${config.BASE_URL}${endpoint}`, {
   method,
   headers: {
     'content-type': 'application/json',
-    ...authHeader(authenticated),
+    ...authHeader(authenticated)
   },
-  body: JSON.stringify(data),
+  body: JSON.stringify(data)
 }).then(handleResponse);
 
 export default api;

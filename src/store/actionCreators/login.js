@@ -1,5 +1,6 @@
-import * as Actions from './actions';
-import Authentication from '../api/authenticationAPI';
+import * as Actions from '../actions/constants';
+import Authentication from '../../utils/authenticationAPI';
+import toast from '../../utils/toast';
 
 const loginSuccess = payload => ({
   type: Actions.LOGIN_SUCCESS,
@@ -13,11 +14,9 @@ const loginFailure = payload => ({
 
 const login = user => (dispatch) => {
   Authentication.login(user)
-    .then(() => {
+    .then((res) => {
+      toast.success('Login Successful');
       dispatch(loginSuccess());
-    })
-    .catch(() => {
-      dispatch(loginFailure());
     });
 };
 

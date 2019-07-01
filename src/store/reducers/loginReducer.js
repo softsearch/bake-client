@@ -1,9 +1,10 @@
 export default (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS': {
-      return {
-        ...state
-      };
+      const newState = Object.assign({}, state);
+      newState.loginReducer.authenticated = true;
+
+      return newState;
     }
     case 'LOGIN_FAILURE': {
       return {
