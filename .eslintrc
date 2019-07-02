@@ -1,0 +1,67 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "plugins": [ "react", "jsx-a11y", "import" ],
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": "error",
+    "no-return-await": "error",
+    "no-return-assign": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": ["*"], "next": ["return"]},
+      { "blankLine": "never", "prev": ["if"], "next": ["if", "const"]}
+    ],
+
+    "comma-dangle": ["error", "never"],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "local",
+        "args": "none"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/jsx-one-expression-per-line": [
+      0,
+      {
+        "allow": "single-child"
+      }
+    ],
+    "react/forbid-prop-types": [
+      "error",
+      {
+        "forbid": ["any"],
+        "checkContextTypes": false,
+        "checkChildContextTypes": true
+      }
+    ],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "linebreak-style": ["error", "unix"],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max":1,
+        "maxEOF": 0
+      }
+    ]
+  }
+}

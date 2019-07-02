@@ -251,7 +251,7 @@
       // animation: false,
       tooltips: {
         custom: false,
-        mode: 'index',
+        mode: 'actions.js',
         position: 'nearest'
       }
     };
