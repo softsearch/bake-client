@@ -20,7 +20,8 @@ const LoginComponent = ({
                     type="text"
                     id="inputEmail"
                     required="required"
-                    {...name}
+                    value={name.value}
+                    onChange={name.onChange}
                     className={errors && errors.username ? 'form-control error' : 'form-control'}
                     placeholder="username"
                   />
@@ -33,7 +34,8 @@ const LoginComponent = ({
                 <div className="form-label-group">
                   <input
                     type="password"
-                    {...password}
+                    value={password.value}
+                    onChange={password.onChange}
                     id="inputPassword"
                     className={errors && errors.password ? 'form-control error' : 'form-control'}
                     placeholder="Password"

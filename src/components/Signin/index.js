@@ -6,24 +6,35 @@ import reducer from '../../store/reducers/loginReducer';
 import initialState from '../../store/initialState';
 
 const Login = () => {
-  const name = useFormInput('');
-  const password = useFormInput('');
-  const { errors, handleLoginRequest } = useForm({ name, password });
+  const [errors, setErrors] = useState({});
+  const name = useFormInput('', errors, setErrors);
+  const password = useFormInput('', errors, setErrors);
+  const { handleLoginRequest } = useFormSubmit({ name, password }, errors, setErrors);
 
   return (
     <div>
-      <LoginComponent login={handleLoginRequest} errors={errors} name={name} password={password} />
+      <LoginComponent
+        login={handleLoginRequest}
+        errors={errors}
+        name={name}
+        password={password}
+      />
     </div>
   );
 };
 
 export default Login;
 
-const useFormInput = (initialValue) => {
+const useFormInput = (initialValue, errors, setErrors) => {
   const [value, setValue] = useState(initialValue);
+
   function handleChange(e) {
     e.preventDefault();
     setValue(e.target.value);
+    const newErrors = { ...errors };
+    newErrors.username = '';
+    if (e.target.type === 'password') newErrors.password = '';
+    setErrors(newErrors);
   }
 
   return {
@@ -46,9 +57,8 @@ const validate = (values) => {
   return errors;
 };
 
-const useForm = (values) => {
+const useFormSubmit = (values, errors, setErrors) => {
   const { name, password } = values;
-  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -67,7 +77,6 @@ const useForm = (values) => {
   };
 
   return {
-    errors,
     handleLoginRequest
   };
 };
